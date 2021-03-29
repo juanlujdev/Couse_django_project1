@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+    {% include "includes/header.html" %}
+    <div class="grid-container">
+        <div class="grid-x">
+            <h1 class="cell">Lista Empleados:</h1>
+            <div class="grid-x">
+                <table>
+                    <thead>
+                    <tr>
+                        <th width="200">ID</th>
+                        <th>NOMBRES</th>
+                        <th width="150">APELLIDOS</th>
+                        <th width="150">DEPARTAMENTOS</th>
+                        <th width="150">ACCION</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for e in object_list %}
+                        <tr>
+                            <td>{{ e.id }}</td>
+                            <td>{{ e.first_name }}</td>
+                            <td>{{ e.last_name }}</td>
+                            <td>{{ e.departamento }}</td>
+                            <td>
+                                <a class="button success"
+                                   href="{% url 'persona_app:modificar_empleado' e.id %}">Editar</a>
+                                <!--le pasamos el id para saber cual hay que modificar-->
+                                <a class="button alert"
+                                   href="{% url 'persona_app:eliminar_empleado' e.id %}">Eliminar</a>
+                                <!--le pasamos el id para saber cual hay que modificar-->
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <!--inicio pestañas para pasar pagina-->
+            <div class="cell">
+                {% if is_paginated %}<!--si existe paginacion (esta en la view, puesto como paginate_by)-->
+                    <nav aria-label="Pagination">
+                        <ul class="pagination">
+                            {% if page_obj.has_previous %}<!--page_obj es el nombre del objeto que manda cuando existe paginacion,
+si tiene paginas atras muetrame el previous. valido si existe informacion en la pagina previa-->
+                                <li class="pagination-previous">
+                                    <a href="?page={{ page_obj.previous_page_number }}">Atras</a>
+                                </li>
+                                <!--la explicacion esta arriba-->
+                            {% endif %}
+                            {% for pagina in paginator.page_range  %}<!--el paginato.page_range, al igual que en
+el if de arriba es algo propio que nos manda el paginator_by de la vista, es un array con el nº de paginas segun la cantidad de
+item que le hemos puesto, en este caso son 4(esta puest en su view)-->
+                                {% ifequal pagina page_obj.number %} <!--tac de django que hace comparaciones, compara la pagina
+de nuestro for con el objeto que nos trae nuestra pagina actual que es page.obj y seguido del numero que trae. si es igual tiene que pintar
+en azul la pagina actual que estamos-->
+                                    <li class="current"><span class="show-for-sr">You're on page</span> {{ pagina }}
+                                    </li>
+                                    {% else %}<!--este else es para elmcaso contrario
+                                 ifequal y el endifequal cierra el bloque de ifqual-->
+                                    <li><a href="?page={{ pagina }}">{{ pagina }}</a></li>
+                                    <!--muestra el listado de paginas y navega hacia la seleccionada-->
+                                {% endifequal %}
+                            {% endfor %}
+                            {% if page_obj.has_next %}<!--page_obj es el nombre del objeto que manda cuando existe paginacion,
+si tiene paginas atras muetrame el previous, compruebo si existe informacion en la pagina siguiente-->
+                                <li class="pagination-next">
+                                    <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                {% endif %}
+            </div>
+
+            <!--fin pestañas para pasar pagina-->
+
+        </div>
+    </div>
+
+{% endblock content %}

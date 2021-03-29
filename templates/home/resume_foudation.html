@@ -1,0 +1,25 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/foundation.min.css' %}">
+    <title>Document</title>
+</head>
+<body>
+<h1>Resumen foundation</h1>
+<div class="grid-x" style="border: 1px solid deeppink">
+    <h2 class="cell small-12 large-5" style="border: 1px solid lawngreen">elemnto 1</h2>
+    <h2 class="cell large-2" style="border: 1px solid purple">elemnto 2</h2>
+    <h2 class="cell" style="border: 1px solid deepskyblue">elemnto 3</h2>
+    <div class="cell large-4 grid-x"style="border: 1px solid purple">
+        <h4 class="cell large-2" style="border: 1px solid yellow">otro elemento</h4>
+        <h4 class="cell large-2" style="border: 1px solid yellowgreen">otro elemento</h4>
+        <h4>otro elemento</h4>
+    </div>
+</div>
+</body>
+</html>

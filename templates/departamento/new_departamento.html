@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block tittle %}
+    Registrar Departamento
+{% endblock tittle %}
+
+{% block content %}
+    {% include 'includes/header.html' %}
+
+    <div class="grid-container">
+        <div class="grid-x"><!--grid-x porque va a tener hijos-->
+            <h1 class="cell">Registrar departamento</h1>
+            <form class="cell callout grid-x grid-margin-x" method="post">{% csrf_token %}<!--grid-x porque va a tener hijos
+y queremos que tenga algo de margen de separacion los input, por espo grid-margin-x. y el callout es la caja que se ver alrededor
+del formulario-->
+                <div class="medium-6 cell">
+                    <label>Nombres:
+                        {{ form.nombre }}
+                    </label>
+                </div>
+                <div class="medium-6 cell">
+                    <label>Nombres:
+                        {{ form.nombre }}
+                    </label>
+                </div>
+                <div class="medium-6 cell">
+                    <label>Nombres:
+                        {{ form.nombre }}
+                    </label>
+                </div>
+                <div class="medium-6 cell">
+                    <label>Nombres:
+                        {{ form.nombre }}
+                    </label>
+                </div>
+                <div class="cell medium-12">
+                    <button type="submit" class="button">Guardar</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+{% endblock content %}
+
+<h1>Registrar nuevo departamento</h1>
+<form method="post">{% csrf_token %}
+    <h3>Datos Empleado</h3>
+    <p>
+        {{ form.nombre }}
+    </p>
+    <p>
+        {{ form.apellidos }}
+    </p>
+    <h3>
+        Datos de departamento
+    </h3>
+    <p>{{ form.departamento }}</p>
+    <p>{{ form.shorname }}</p>
+
+    <button type="submit">Guardar</button>
+
+</form>

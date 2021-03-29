@@ -1,0 +1,5 @@
+django
+unipath
+django-ckeditor
+psycopg2-binary
+Pillow

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block tittle %}
+    {{ object.full_name }}<!--Como se recupera ya un objeto cargado, le decimos que nos muestre en el titulo(pestaña de
+    navegador el nombre del objeto q recibo)-->
+{% endblock tittle %}
+
+{% block content %}
+    {% include 'includes/header.html' %}
+    <div class="grid-container"><!--contenedor-->
+        <div class="grid-x grid-margin-x align-center"><!--grid-x porque va a tener hijos margin-x para que tenga margenes y no este
+        apelotonado-->
+            <div class="cell large-4 card" style="width: 300px;margin-top: 10px">
+                <div class="card-divider">
+                    {{ object.get_job_display }}<!--si ponemos q nos muestre object.job solo mostraria los numeros a los
+trabajos que hace referencia, con get_job_displayt (solo son para los atributos que son choice, (veamos su model)) podemos ver el valor a
+que pertenece el numero-->
+                </div>
+                {% if object.avatar %}
+                    <img src="{{ object.avatar.url }}"><!--Como tenemos que recoger una imagen(atraves de avatar)
+una imagen siempre se carga atraves de una url , por eso se añade url al final de la sentencia-->
+                {% else %}
+                    <img src="{% static "img/no_image.jpeg" %}">
+                {% endif %}
+                <div class="card-section">
+                    <h4>{{ object.full_name }}</h4>
+                    <p>{{ object.last_name }}</p>
+                    <p>{{ object.departamento.shor_name }}</p>
+                    <p><span class="label">Habilidades:</span></p>
+                    <ul class="vertical menu">
+                        {% for h in empleado.habilidades.all %}<!--como es habilidad tiene una relacion
+muchos a muchos, debemos sacar su informacion como si fuera un array, como devuelve la id y la habilidad
+le decimos al objeto que solo muestre la habilidad-->
+                            <li>{{ h.habilidad }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

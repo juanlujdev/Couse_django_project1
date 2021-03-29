@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block tittle %}
+    Edittar empleado
+{% endblock tittle %}
+
+{% block content %}
+    {% include 'includes/header.html' %}
+
+    <div class="grid-container">
+        <div class="grid-x">
+            <h1 class="cell">
+                Modificar empleado
+            </h1>
+            <div class="cell">
+                <form class="grid-x grid-margin-x" method="post">{% csrf_token %}
+                    <div class="cell large-6">
+                        <label>Nombres:
+                            {{ form.first_name }}<!--Es un formulario que nos crea automagicamente django-->
+                            <input type="text" placeholder=".medium-6.cell">
+                        </label>
+                    </div>
+                    <div class="cell large-6">
+                        <label>Apellidos:
+                            {{ form.last_name }}<!--Es un formulario que nos crea automagicamente django-->
+                            <input type="text" placeholder=".medium-6.cell">
+                        </label>
+                    </div>
+                    <div class="cell large-6">
+                        <label>Trabajo:
+                            {{ form.job }}<!--Es un formulario que nos crea automagicamente django-->
+                            <input type="text" placeholder=".medium-6.cell">
+                        </label>
+                    </div>
+                    <div class="cell large-6">
+                        <label>Area:
+                            {{ form.departamento }}<!--Es un formulario que nos crea automagicamente django-->
+                            <input type="text" placeholder=".medium-6.cell">
+                        </label>
+                    </div>
+                    <div class="cell large-6">
+                        <label>Habilidades extra:
+                            {{ form.habilidades }}<!--Es un formulario que nos crea automagicamente django-->
+                            <input type="text" placeholder=".medium-6.cell">
+                        </label>
+                    </div>
+                    <div class="cell">
+                        <button type="submit" class="success button">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+

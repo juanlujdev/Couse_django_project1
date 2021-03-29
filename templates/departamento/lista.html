@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Lista departamentos
+{% endblock title %}
+
+{% block content %}
+    {% include 'includes/header.html' %}
+
+    <div class="grid-container">
+        <div class="grid-x">
+            <h1 class="cell"> Lista Departamentos</h1>
+            <div class="cell">
+                <table>
+                    <tbody>
+                    {% for departamento in  departamentos %}
+                        <tr>
+                            <td>{{ departamento.name }}</td>
+                            <td>{{ departamento.shor_name }}</td>
+                            <td><a class="button warning" href="{% url 'persona_app:empleado_area' departamento.shor_name %}">Ver empleados</a></td>
+<!--Como a la url que tenemos q navegar, segun urls.py debe recibir in parametro "shor_name" se lo decimos desde aqui-->
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+{% endblock content %}
